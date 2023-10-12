@@ -5,8 +5,11 @@ A simple web application that interacts with the MongoDB database
 
 1) **How to run the web application**
   a) run the web application in a virtual environment by **python run.py**
+
   b) install the following libraries if needed:
+  
     i) install flask: **python -m pip install flask**
+    
     ii) install pyMongo in the flask: **$ pip install Flask-PyMongo**
    
 2)**Navigating through the web**

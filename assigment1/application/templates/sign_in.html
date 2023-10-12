@@ -1,0 +1,112 @@
+<!-- page to fill in student data -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- sweetalert js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
+
+    {% if title %}
+        <title>Flask - {{ title }}</title>
+    {% else %}
+        <title>Flask</title>
+    {% endif %}
+</head>
+<body>
+   
+
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-8">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <script>
+                  Swal.fire({
+                    title: "{{ category.title() }}!",
+                    text: "{{ message }}",
+                    icon: "{{ category }}",
+                    closeOnConfirm: false
+                  })
+                </script>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <div>
+            <form action="" method="POST">
+                {{ form.csrf_token() }}
+                <fieldset class="form-group">
+                    <legend>Update/Add Student</legend>
+        
+                    <div class="form-group">
+                        {{ form.student_name.label(class="formcontrol-label") }}
+                        {% if form.student_name.errors %}
+                            {{ form.student_name(class="form-control form-control is-invalid") }}
+                            {% for error in form.student_name.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.student_name(class="form-control form-control") }}
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-group">
+                        {{ form.student_id.label(class="form-control-label", name = "st_id") }}
+                        {% if form.student_id.errors %}
+                            {{ form.student_id(class="form-control form-control is-invalid") }}
+                            {% for error in form.student_id.errors %}
+                                <div class="invalid-feedback">
+                                    <span>{{ error }}</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.student_id(class="form-control form-control") }}
+                        {% endif %}
+                    </div>
+        
+                    <div class="form-group">
+                        {{ form.credit.label(class="form-control-label") }}
+                        {% if form.credit.errors %}
+                            {{ form.credit(class="form-control form-control is-invalid") }}
+                            {% for error in form.credit.errors %}
+                                <div class="invalid-feedback">
+                                    <span>{{ error }}</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.credit(class="form-control form-control") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit_sign(class="btn btn-outline-info") }}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+      </div>
+        </div>
+        
+        <div class="col-md-2"></div>
+      </div>
+    </main>
+
+    
+
+    <!-- bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

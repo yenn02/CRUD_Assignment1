@@ -1,0 +1,30 @@
+<!-- a filling box for GPA of selected class only -->
+{% block content %}
+<div>
+    <form action="" method="POST">
+        {{ form.csrf_token() }}
+        <fieldset class="form-group">
+            <legend>Update GPA</legend>
+
+            <div class="form-group">
+                {{ form.credit.label(class="form-control-label") }}
+                {% if form.credit.errors %}
+                    {{ form.credit(class="form-control form-control is-invalid") }}
+                    {% for error in form.credit.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.credit(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

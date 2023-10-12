@@ -1,0 +1,22 @@
+<!-- display student in the database -->
+{% extends "layout.html" %}
+{% block content %}
+
+<a href="{{ url_for('add_student')}}" class="btn btn-info btn-sm">Add Students</a>
+ <div> 
+    {% for student in students %}
+      
+                <div class="card p-1 m-3">
+                    <div class="card-body">
+                        <p class="card-title">{{ student.student_name }}</p>
+                        <p class="card-text">Course ID: {{ student.student_id}}</p>
+                        <p class="card-text" style="text-size-adjust: 10p;">Total Credit: {{ student.total_credit}}</p>
+                        <a href="{{ url_for('delete_student', id = student._id)}}" class="btn btn-info btn-sm">Remove</a>
+                        <a href="{{ url_for('update_profile', id = student._id)}}" class="btn btn-info btn-sm">Update</a>
+                    </div>
+                </div>
+           
+    {%endfor%}
+
+</div>
+{% endblock %}

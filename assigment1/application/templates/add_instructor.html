@@ -1,0 +1,59 @@
+<!-- form to fill in the attribute of instructor database collection  -->
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <form action="" method="POST">
+        {{ form.csrf_token() }}
+        <fieldset class="form-group">
+            <legend>Update Profile</legend>
+
+            <div class="form-group">
+                {{ form.ins_name.label(class="formcontrol-label") }}
+                {% if form.ins_name.errors %}
+                    {{ form.ins_name(class="form-control form-control is-invalid") }}
+                    {% for error in form.ins_name.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.ins_name(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.ins_id.label(class="formcontrol-label") }}
+                {% if form.ins_id.errors %}
+                    {{ form.ins_id(class="form-control form-control is-invalid") }}
+                    {% for error in form.ins_id.errors %}
+                    <div class="invalid-feedback">
+                        <span>{{ error }}</span>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.ins_id(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.department.label(class="form-control-label") }}
+                {% if form.department.errors %}
+                    {{ form.department(class="form-control form-control is-invalid") }}
+                    {% for error in form.department.errors %}
+                        <div class="invalid-feedback">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {{ form.department(class="form-control form-control") }}
+                {% endif %}
+            </div>
+
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

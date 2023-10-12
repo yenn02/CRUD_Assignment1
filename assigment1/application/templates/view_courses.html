@@ -1,0 +1,25 @@
+<!-- display course database -->
+{% extends "layout.html" %}
+{% block content %}
+<a href="{{ url_for('add_course')}}" class="btn btn-info btn-sm">Add Course</a>
+ <div> 
+    <!-- create a for loop to iterate through the course collection -->
+    {% for course in courses %}
+        {% for person in instructor %}
+            {% if person.ins_id == course.ins_id %}
+                <div class="card p-1 m-3">
+                    <div class="card-body">
+                        <p class="card-title">{{ course.course_name }}</p>
+                        <p class="card-text">Course ID: {{ course.course_id}}</p>
+                        <p class="card-text" style="text-size-adjust: 10p;">Intructor: {{ person.ins_name}}</p>
+                        <p class="card-text" style="text-size-adjust: 10p;">Instructor ID: {{ person.ins_id}}</p>
+                        <a href="{{ url_for('drop_course', id = course._id) }}" class="btn btn-info btn-sm">Remove</a>
+                        <a href="{{ url_for('update_course', id = course._id) }}" class="btn btn-info btn-sm">Update</a>
+                        <a href="{{ url_for('view_enroll', id = course._id) }}" class="btn btn-info btn-sm">View Enrollment</a>
+                    </div>
+                </div>
+            {% endif %}
+        {%endfor%}
+{% endfor %}
+</div>
+{% endblock %}

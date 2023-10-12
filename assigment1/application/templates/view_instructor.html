@@ -1,0 +1,20 @@
+<!-- html to display instructor database collection -->
+{% extends "layout.html" %}
+{% block content %}
+<a href="{{ url_for('add_instructor') }}" class="btn btn-info btn-sm">Add Instructor</a>
+ <div> 
+        {% for person in instructors %}
+                <div class="card p-1 m-3">
+                    <div class="card-body">
+                        <p class="card-title">{{ person.ins_name }}</p>
+                        <p class="card-text">ID: {{ person.ins_id}}</p>
+                        <p class="card-text" style="text-size-adjust: 10p;">Department: {{ person.department}}</p>
+                        <a href="{{ url_for('delete_instructor', id = person._id) }}" class="btn btn-info btn-sm">Remove</a>
+                        <a href="{{ url_for('update_instructor', id = person._id) }}" class="btn btn-info btn-sm">Update</a>
+                    </div>
+                </div>
+            
+        {%endfor%}
+
+</div>
+{% endblock %}
